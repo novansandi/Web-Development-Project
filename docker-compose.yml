@@ -18,12 +18,12 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: tokoonline
+      MYSQL_DATABASE: usertable
     ports:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./tokoonline.sql:/docker-entrypoint-intdb.d/tokoonline.sql
+      - ./usertable.sql:/docker-entrypoint-intdb.d/usertable.sql
     networks:
       - backend
 
