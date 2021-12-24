@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  php-apache-environment:
+  image: novansandi/php
+  container_name: php-apache
+  depends_on:
+    - db
+  volumes:
+    - ./php/src:/var/www/html/
+  ports:
+    - 8080:80
+  networks:
+    - backend
+
+  db:
+    container_name: db
+    image: mysql
+    restart:  always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: usertable
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./usertable.sql/docker-entrypoint-initdb.d/usertable.sql
+    networks:
+      - backend
+
+volumes:
+  db:
+
+networks:
+  backend:
+    name: backend-network
+    ipam:
+      driver: default
+      config:
+        - sumber: 172.11.0.0/24
