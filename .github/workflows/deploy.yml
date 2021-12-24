@@ -67,7 +67,7 @@ jobs:
       - name: 'Create Instance'
         if: ${{!env.INSTANCE_OCID}}
         run: |
-          echo "INSTANCE_OCID=$( \
+          echo "INSTANCE_OCID=$(\
             oci compute instance launch \
             --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
             --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
