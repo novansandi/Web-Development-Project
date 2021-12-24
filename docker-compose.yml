@@ -1,16 +1,16 @@
 version: '3.8'
 services:
   php-apache-environment:
-  image: novansandi/php
-  container_name: php-apache
-  depends_on:
-    - db
-  volumes:
-    - ./php/src:/var/www/html/
-  ports:
-    - 8080:80
-  networks:
-    - backend
+    image: novansandi/php
+    container_name: php-apache
+    depends_on:
+      - db
+    volumes:
+      - ./php/src:/var/www/html/
+    ports:
+      - 8080:80
+    networks:
+      - backend
 
   db:
     container_name: db
