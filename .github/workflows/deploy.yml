@@ -1,4 +1,4 @@
-name: cicd
+name: cicd-uas
 
 on:
   push:
@@ -67,11 +67,11 @@ jobs:
       - name: 'Create Instance'
         if: ${{!env.INSTANCE_OCID}}
         run: |
-          echo "INSTANCE_OCID=$(\
+          echo "INSTANCE_OCID=$( \
             oci compute instance launch \
-            --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
+            -c ${{secrets.VM_COMPARTMENT_OCID}} \
             --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
-            --shape ${{secrets.VM_SHAPE}} \ 
+            --shape ${{secrets.VM_SHAPE}} \
             --shape-config '{"memoryInGBs": 1, "ocpus": 1}' \
             --assign-public-ip true \
             --display-name cicd-demo \
