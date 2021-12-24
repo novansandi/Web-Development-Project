@@ -69,7 +69,7 @@ jobs:
         run: |
           echo "INSTANCE_OCID=$( \
             oci compute instance launch \
-            -c ${{secrets.VM_COMPARTMENT_OCID}} \
+            --c ${{secrets.VM_COMPARTMENT_OCID}} \
             --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
             --shape ${{secrets.VM_SHAPE}} \
             --shape-config '{"memoryInGBs": 1, "ocpus": 1}' \
