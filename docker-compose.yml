@@ -1,28 +1,29 @@
 version: '3.8'
 services:
   php-apache-environment:
-    image: novansandi/php
+    image: novansandi/php-uas
     container_name: php-apache
     depends_on:
       - db
     volumes:
       - ./php/src:/var/www/html/
     ports:
-      - 8080:80
+      - 80:80
     networks:
       - backend
-
-  db:
+  
+  db: 
     container_name: db
     image: mysql
-    restart:  always
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: usertable
+      MYSQL_DATABASE: tokoonline
     ports:
       - "3306:3306"
     volumes:
-      - ./usertable.sql/docker-entrypoint-initdb.d/usertable.sql
+      - db:/var/lib/mysql
+      - ./tokoonline.sql:/docker-entrypoint-intdb.d/tokoonline.sql
     networks:
       - backend
 
@@ -35,4 +36,4 @@ networks:
     ipam:
       driver: default
       config:
-        - sumber: 172.11.0.0/24
+        - subnet: 172.11.0.0/24
